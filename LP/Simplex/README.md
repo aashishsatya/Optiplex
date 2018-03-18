@@ -14,6 +14,6 @@ Finally, run
 python3 Simplex.py
 ```
 
-to obtain the results.
+to obtain the results (please note the scripts are meant to be run using Python 3).
 
 Feel free to get in touch with me if you have suggestions/queries :)
