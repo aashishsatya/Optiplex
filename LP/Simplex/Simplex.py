@@ -39,7 +39,7 @@ def check_feasibility(x_b, x_n, c, A, b):
     c_dash = [0] * len(x_n) + [-1] * len(x_b)
     opt, soln = simplex(x_b, x_n, c_dash, A, b)
     
-    if opt == 0 and all(soln[x_n_var] == 0 for x_n_var in x_n):
+    if opt == 0 and all(soln[x_b_var] == 0 for x_b_var in x_b):
         return True
     return False
 
@@ -138,12 +138,13 @@ def simplex(x_b, x_n, c, A, b):
         print('LP is unbounded.')
         return
     
-    del x_n[entering_vbl_index]
-    del x_b[leaving_vbl_index]
-    bisect.insort(x_n, leaving_vbl)
-    bisect.insort(x_b, entering_vbl)
+    new_x_n = x_n[:entering_vbl_index] + x_n[entering_vbl_index + 1:]
+    new_x_b = x_b[:leaving_vbl_index] + x_b[leaving_vbl_index + 1:]
+    
+    bisect.insort(new_x_n, leaving_vbl)
+    bisect.insort(new_x_b, entering_vbl)
         
-    return simplex(x_b, x_n, c, A, b)      
+    return simplex(new_x_b, new_x_n, c, A, b)      
         
 def read_input():
 
@@ -180,13 +181,12 @@ def read_input():
             
 c, A, b = read_input()
 x_b, x_n, c, A, b = preprocess(c, A, b)
-
 feasible = check_feasibility(x_b, x_n, c, A, b)
 if feasible: 
     opt, soln = simplex(x_b, x_n, c, A, b)
     print('Optimum value:', opt)
     print('Solution values:')
-    for var in x_b:
+    for var in x_n:
         print('x_' + str(var) + ': ' + str(soln[var]))
 else:
     print('LP is not feasible.')
