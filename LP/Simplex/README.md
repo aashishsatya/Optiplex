@@ -11,7 +11,7 @@ Write out the matrices A and b in the file Ab.txt. In particular, line 1 will co
 Finally, run
 
 ```
-python Simplex.py
+python3 Simplex.py
 ```
 
 to obtain the results.
