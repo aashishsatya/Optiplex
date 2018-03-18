@@ -22,8 +22,11 @@ def preprocess(c, A, b):
     m = len(A)  # no of rows (constraints)
     n = len(A[0])   # no of columns (variables)
     
-    # we need to come up with an initial feasible solution
-    # so solve a different LP as discussed in the text
+    # we need to make sure that the b's are all positive for the feasibility check (later) to work correctly
+    
+    for i in range(m):
+        if b[i] < 0:
+            A[i] = [j * -1 for j in A[i]]
         
     # add auxiliary variables to each constraint; the number of variables added is m
     
