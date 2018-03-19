@@ -16,4 +16,6 @@ python3 Simplex.py
 
 to obtain the results (please note the scripts are meant to be run using Python 3).
 
+I've also written some blog posts detailing the scripts, you can find the first one [here](https://gedankenxp.wordpress.com/2018/03/09/the-simplex-method-part-0/).
+
 Feel free to get in touch with me if you have suggestions/queries :)
